@@ -23,8 +23,10 @@ div button:hover {
 
 .posts {
     user-select: none;
-    padding-top: calc(3em + 40px);
+    padding-top: calc(3em + 20px);
     font-family: 'Roboto', sans-serif;
+    
+
 }
 
 .post {
