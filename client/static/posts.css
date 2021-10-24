@@ -13,6 +13,7 @@ div button {
     transition: all 0.2s;
     font-family: 'Roboto', sans-serif;
     color: #000;
+    cursor: pointer;
 }
 
 div button:hover {
@@ -21,24 +22,58 @@ div button:hover {
 }
 
 .posts {
+    user-select: none;
     padding-top: calc(3em + 40px);
     font-family: 'Roboto', sans-serif;
 }
 
 .post {
+    cursor: pointer;
     padding: 2em 2%;
     background-color: #C4C4C4;
     margin: auto;
-    width: 95%;
+    width: 90%;
 }
 
 .post-author {
-    font-size: 35px;
+    font-size: 25px;
     font-weight: 100;
 }
 
 .post-title {
+    padding-top: 10px;
     padding-left: 20px;
     font-weight: 500;
-    font-size: 40px;
+    font-size: 35px;
+}
+
+.post-tags {
+    display: inline;
+    padding: 0;
+    padding-left: 2%;
+}
+
+.post-tags div {
+    top: 50%;
+    transform: translateY(-18%);
+    padding: 3px 0;
+    margin: auto;
+    display: inline-block;
+    background-color: #fff;
+    border-radius: 6px;
+    font-size: 15px;
+}
+
+.post-tags div span {
+    font-weight: 400;
+    margin: 0.5em;
+}
+
+.post-header .comments {
+    padding-top: 15px;
+}
+
+.comments span {
+    padding-left: 8px;
+    font-family: 'Alata', sans-serif;
 }
