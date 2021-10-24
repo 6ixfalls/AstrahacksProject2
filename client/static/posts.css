@@ -1,4 +1,4 @@
-div button {
+.new-post {
     margin-top: 20px;
     margin-right: 50px;
     width: 8%;
@@ -16,7 +16,7 @@ div button {
     cursor: pointer;
 }
 
-div button:hover {
+.new-post:hover {
     background-color: #9e702b;
     color: #fff;
 }
@@ -25,11 +25,10 @@ div button:hover {
     user-select: none;
     padding-top: calc(3em + 20px);
     font-family: 'Roboto', sans-serif;
-    
-
 }
 
 .post {
+    display: none;
     cursor: pointer;
     padding: 2em 2%;
     background-color: #C4C4C4;
@@ -78,4 +77,90 @@ div button:hover {
 .comments span {
     padding-left: 8px;
     font-family: 'Alata', sans-serif;
+}
+
+.post-header .post-time {
+    float: right;
+}
+
+.post-modal {
+    display: block;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    height: calc(100% - 60%);
+    font-family: 'Alata', sans-serif;
+}
+
+.modal-content #title {
+    font-size: 30px;
+}
+
+.boxes {
+    display: flex;
+    height: 90%;
+    width: 100%;
+    padding-top: 30px;
+}
+
+textarea {
+    display: block;
+    width: 45%;
+    height: 90%;
+    resize: none;
+    font-family: 'Roboto', sans-serif;
+    display: flex;
+    flex-basis: 50%;
+    flex-direction: column;
+    background-color: transparent;
+}
+
+.output-preview {
+    width: 45%;
+    height: 90%;
+    resize: none;
+    font-family: 'Roboto', sans-serif;
+    outline: #000 solid 1px;
+    overflow-y: auto;
+    display: flex;
+    flex-basis: 50%;
+    flex-direction: column;
+    font-size: small;
+}
+
+.close-modal {
+    margin-top: 10px;
+    margin-right: 40px;
+    width: 8%;
+    height: 2.8em;
+    float: right;
+
+    border:0.1em solid transparent;
+    border-radius: 6px;
+    background-color: #D0963E;
+    box-sizing: border-box;
+    text-decoration: none;
+    transition: all 0.2s;
+    font-family: 'Roboto', sans-serif;
+    color: #000;
+    cursor: pointer;
+}
+
+.close-modal:hover {
+    background-color: #9e702b;
+    color: #fff;
 }

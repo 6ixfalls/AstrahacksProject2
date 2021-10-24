@@ -14,6 +14,7 @@
     <link rel="shortcut icon" href="static/logo.ico" type="image/x-icon">
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </head>
 <body>
     <div class="topnavigation">
@@ -25,12 +26,13 @@
     </div>
 
     <div>
-        <button>New Post</button>
+        <button class="new-post">New Post</button>
     </div>
 
     <div class="posts">
         <div class="post" id="template">
             <div class="post-header">
+                <span class="post-time">April 1st, 12:02</span>
                 <div class="post-author">
                     <a>Author</a>
                     <div class="post-tags">
@@ -48,27 +50,19 @@
         </div>
     </div>
 
-
-
-    <div class="posts">
-        <div class="post" id="template">
-            <div class="post-header">
-                <div class="post-author">
-                    <a>Author</a>
-                    <div class="post-tags">
-                        <div><span>Social</span></div>
-                    </div>
-                </div>
-                <div class="post-title">
-                    <a>Title</a>
-                </div>
-                <div class="comments">
-                    <i class="fas fa-comments fa-lg"></i>
-                    <span>3</span>
-                </div>
+    <div class="post-modal">
+        <!-- modal to write a post with author, body and title -->
+        <div class="modal-content">
+            <span id="title">New Post</span>
+            <button class="close-modal">
+                <i class="fas fa-times fa-lg"></i>
+            </button>
+            <div class="boxes">
+                <textarea type="text" class="input"></textarea>
+                <div class="output-preview"></div>
             </div>
         </div>
-    
+    </div>
 
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
     <script type="module" src="static/posts.js"></script>

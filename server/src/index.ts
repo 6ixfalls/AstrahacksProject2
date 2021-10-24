@@ -7,7 +7,8 @@ import createDOMPurify from "dompurify";
 import marked from "marked";
 import { json } from "body-parser";
 import { JSDOM } from "jsdom";
-import { getEnabledCategories } from "trace_events";
+
+marked.setOptions({ breaks: true });
 
 // setup express & firebase
 const serviceAccount = require(path.join(__dirname, "../admin-sdk.json"));

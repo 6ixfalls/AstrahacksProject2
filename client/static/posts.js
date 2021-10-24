@@ -41,16 +41,31 @@ signInAnonymously(auth).then(() => {
     }).showToast();
 });
 
+const postDefault = $(".post").first();
+const postParentFrame = postDefault.parent();
+const postTemplate = postDefault.clone();
+postTemplate.prop("style", "display: revert;")
+postDefault.remove();
+
 onAuthStateChanged(auth, async (user) => {
     if (user) {
         const db = getFirestore(app);
 
         // get posts
         const postRef = collection(db, "posts");
-        const q = query(postRef, orderBy("timestamp", "desc"), limit(10));
+        const q = query(postRef, orderBy("createdAt", "desc"), limit(10));
         const querySnapshots = await getDocs(q);
 
-        console.log(querySnapshots.size);
+        querySnapshots.docs.forEach((doc) => {
+            const data = doc.data();
+            console.log(data);
+            const post = postTemplate.clone();
+            post.find(".post-title").text(data.title);
+            post.find(".post-author").text(data.author);
+            post.find(".comments").children("span").first().text(data.comments.length);
+            post.find(".post-time").text(data.createdAt.toDate().toLocaleString());
+            postParentFrame.append(post);
+        });
     } else {
         Toastify({
             text: "Authentication Logout",
@@ -66,4 +81,9 @@ onAuthStateChanged(auth, async (user) => {
             }
         }).showToast();
     }
+});
+
+$("textarea").first().on("input propertychange paste", () => {
+    console.log($("textarea").first().val());
+    $(".output-preview").first().html(marked($("textarea").first().val(), { breaks: true }));
 });
