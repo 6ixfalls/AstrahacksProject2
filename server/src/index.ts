@@ -7,6 +7,7 @@ import createDOMPurify from "dompurify";
 import marked from "marked";
 import { json } from "body-parser";
 import { JSDOM } from "jsdom";
+import { getEnabledCategories } from "trace_events";
 
 // setup express & firebase
 const serviceAccount = require(path.join(__dirname, "../admin-sdk.json"));
@@ -24,6 +25,24 @@ app.use(
     express.static(path.join(__dirname, "../../client/static/"))
 );
 app.use(json());
+
+const tagsCollection = db.collection("tags");
+
+const getTags = async () => {
+    const snapshot = await tagsCollection.get();
+    const mapped = snapshot.docs.map((doc) =>
+        Object.assign(doc.data(), { id: doc.id })
+    );
+
+    const objectMapped: any = {};
+    mapped.forEach((tag) => {
+        objectMapped[tag.id] = tag;
+    });
+
+    return objectMapped;
+};
+
+let tags = [];
 
 // API handler
 const postLimiter = rateLimit({
@@ -111,6 +130,8 @@ app.post("/api/post", postLimiter, async (req, res) => {
     }
 });
 
-app.listen(80, () => {
+app.listen(80, async () => {
     console.log(`Listening on port 80!`);
+    tags = await getTags();
+    console.log(tags);
 });
