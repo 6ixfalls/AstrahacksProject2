@@ -64,6 +64,9 @@ onAuthStateChanged(auth, async (user) => {
             post.find(".post-author").text(data.author);
             post.find(".comments").children("span").first().text(data.comments.length);
             post.find(".post-time").text(data.createdAt.toDate().toLocaleString());
+            post.click(() => {
+                window.location.href = "post/" + doc.id;
+            });
             postParentFrame.append(post);
         });
     } else {
@@ -86,4 +89,63 @@ onAuthStateChanged(auth, async (user) => {
 $("textarea").first().on("input propertychange paste", () => {
     console.log($("textarea").first().val());
     $(".output-preview").first().html(marked($("textarea").first().val(), { breaks: true }));
+});
+
+$(".send-post").first().click(() => {
+    $(".send-post").prop("disabled", true);
+    axios({
+        method: "post",
+        url: "/api/post",
+        data: {
+            content: $("textarea").first().val(),
+            title: $(".output-title").first().val(),
+            author: $(".output-author").first().val(),
+        },
+        validateStatus: (status) => {
+            return status == 200;
+        }
+    }).then((response) => {
+        Toastify({
+            text: "Post Success",
+            duration: 5000,
+            gravity: "top", // `top` or `bottom`
+            position: "right", // `left`, `center` or `right`
+            stopOnFocus: true, // Prevents dismissing of toast on hover
+            style: {
+                background: "linear-gradient(to right, #66de72, #42ffba)",
+                color: "#fff",
+                "border-radius": "5px",
+                "font-family": "'Roboto', sans-serif",
+            }
+        }).showToast();
+    }).catch((error) => {
+        Toastify({
+            text: "Post Error",
+            duration: 5000,
+            gravity: "top", // `top` or `bottom`
+            position: "right", // `left`, `center` or `right`
+            stopOnFocus: true, // Prevents dismissing of toast on hover
+            style: {
+                background: "linear-gradient(to right, #f54254, #e6226a)",
+                color: "#fff",
+                "border-radius": "5px",
+                "font-family": "'Roboto', sans-serif",
+            }
+        }).showToast();
+
+        if (error.headers["X-RateLimit-Reset"]) {
+            console.log("ratelimit header was found, waiting time to end");
+            setTimeout(() => { $(".send-post").prop("disabled", false) }, ((new Date.now().getTime() / 1000) - error.headers["X-RateLimit-Reset"]) * 1000);
+        } else {
+            $(".send-post").prop("disabled", false);
+        }
+    });
+});
+
+$(".new-post").first().click(() => {
+    $(".post-modal").first().prop("style", "display: block;");
+});
+
+$(".close-modal").first().click(() => {
+    $(".post-modal").first().prop("style", "display: none;");
 });

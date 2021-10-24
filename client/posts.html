@@ -15,6 +15,7 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
 <body>
     <div class="topnavigation">
@@ -55,6 +56,7 @@
         <div class="modal-content">
             <span id="title">New Post</span>
             <input class="output-title" placeholder="Post Title"></input>
+            <input class="output-author" placeholder="Post Author"></input>
             <button class="close-modal">
                 <i class="fas fa-times fa-lg"></i>
             </button>
@@ -62,6 +64,7 @@
                 <textarea type="text" class="input" placeholder="Type Body Here (Markdown Supported)"></textarea>
                 <div class="output-preview"></div>
             </div>
+            <button class="send-post">Post</button>
         </div>
     </div>
 

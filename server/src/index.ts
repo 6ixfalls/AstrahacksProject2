@@ -27,24 +27,6 @@ app.use(
 );
 app.use(json());
 
-const tagsCollection = db.collection("tags");
-
-const getTags = async () => {
-    const snapshot = await tagsCollection.get();
-    const mapped = snapshot.docs.map((doc) =>
-        Object.assign(doc.data(), { id: doc.id })
-    );
-
-    const objectMapped: any = {};
-    mapped.forEach((tag) => {
-        objectMapped[tag.id] = tag;
-    });
-
-    return objectMapped;
-};
-
-let tags = [];
-
 // API handler
 const postLimiter = rateLimit({
     windowMs: 60 * 1000, // 1 minute
@@ -66,12 +48,26 @@ const commentLimiter = rateLimit({
     },
 });
 
+app.param("id", (req, res, next, id) => {
+    // @ts-ignore
+    req.id = id;
+    next();
+});
+
 app.get("/", async (req, res) => {
     res.sendFile(path.join(__dirname, "../../client/index.html"));
 });
 
 app.get("/posts", async (req, res) => {
     res.sendFile(path.join(__dirname, "../../client/posts.html"));
+});
+
+app.get("/about", async (req, res) => {
+    res.sendFile(path.join(__dirname, "../../client/about.html"));
+});
+
+app.get("/post/:id", async (req, res) => {
+    res.sendFile(path.join(__dirname, "../../client/real-post.html"));
 });
 
 app.post("/api/comment", commentLimiter, async (req, res) => {
@@ -133,6 +129,4 @@ app.post("/api/post", postLimiter, async (req, res) => {
 
 app.listen(80, async () => {
     console.log(`Listening on port 80!`);
-    tags = await getTags();
-    console.log(tags);
 });

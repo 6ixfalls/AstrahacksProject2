@@ -84,7 +84,7 @@
 }
 
 .post-modal {
-    display: block;
+    display: none;
     position: fixed;
     z-index: 1;
     left: 0;
@@ -140,6 +140,8 @@ textarea {
     flex-basis: 50%;
     flex-direction: column;
     font-size: small;
+    padding: 2px;
+    margin-top: 1px;
 }
 
 .close-modal {
@@ -168,5 +170,32 @@ textarea {
 .output-title {
     display: block;
     position: absolute;
-    width: 30%;
+    width: 20%;
+}
+
+.output-author {
+    display: block;
+    position: absolute;
+    margin-left: calc(20% + 20px);
+    width: 18%;
+}
+
+.send-post {
+    margin-top: -30px;
+    position: absolute;
+    width: 5%;
+    border:0.1em solid transparent;
+    border-radius: 6px;
+    background-color: #48c5ff;
+    box-sizing: border-box;
+    text-decoration: none;
+    transition: all 0.2s;
+    font-family: 'Roboto', sans-serif;
+    color: #fff;
+    cursor: pointer;
+}
+
+.send-post:hover {
+    background-color: #6dbdec;
+    color: #fff;
 }
