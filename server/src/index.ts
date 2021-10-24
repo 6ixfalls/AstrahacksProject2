@@ -19,7 +19,10 @@ const db = getFirestore();
 const app = express();
 
 // host static files
-app.use("static", express.static(path.join(__dirname, "../../client/static/")));
+app.use(
+    "/static",
+    express.static(path.join(__dirname, "../../client/static/"))
+);
 app.use(json());
 
 // API handler
