@@ -1,18 +1,6 @@
 div p {
-    
+    position: relative;
 
-position: relative;
-left: 500px;
-
-
-font-family: Roboto;
-font-style: normal;
-font-weight: normal;
-display: flex;
-align-items: center;
-text-align: center;
-
-color: #000000;
-
-
+    font-family: 'Roboto', sans-serif;
+    display: flex;
 }
