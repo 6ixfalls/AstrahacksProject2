@@ -65,9 +65,9 @@ app.post("/api/comment", commentLimiter, async (req, res) => {
             const window = new JSDOM("").window;
             // typescript cant cast from jsdom window to dompurify window, so ignoring errors
             // @ts-ignore
-            const DOMPurify = createDOMPurify(window);
+            const domPurify = createDOMPurify(window);
 
-            const markdownParsed = DOMPurify.sanitize(marked(req.body.content));
+            const markdownParsed = domPurify.sanitize(marked(req.body.content));
 
             const comment = {
                 author: req.body.author,
@@ -93,9 +93,9 @@ app.post("/api/post", postLimiter, async (req, res) => {
         const window = new JSDOM("").window;
         // typescript cant cast from jsdom window to dompurify window, so ignoring errors
         // @ts-ignore
-        const DOMPurify = createDOMPurify(window);
+        const domPurify = createDOMPurify(window);
 
-        const markdownParsed = DOMPurify.sanitize(marked(req.body.content));
+        const markdownParsed = domPurify.sanitize(marked(req.body.content));
 
         await postRef.set({
             title: req.body.title,
