@@ -1,6 +1,44 @@
-div p {
-    position: relative;
+div button {
+    margin-top: 20px;
+    margin-right: 50px;
+    width: 8%;
+    height: 2.8em;
+    float: right;
 
+    border:0.1em solid transparent;
+    border-radius: 6px;
+    background-color: #D0963E;
+    box-sizing: border-box;
+    text-decoration: none;
+    transition: all 0.2s;
     font-family: 'Roboto', sans-serif;
-    display: flex;
+    color: #000;
+}
+
+div button:hover {
+    background-color: #9e702b;
+    color: #fff;
+}
+
+.posts {
+    padding-top: calc(3em + 40px);
+    font-family: 'Roboto', sans-serif;
+}
+
+.post {
+    padding: 2em 2%;
+    background-color: #C4C4C4;
+    margin: auto;
+    width: 95%;
+}
+
+.post-author {
+    font-size: 35px;
+    font-weight: 100;
+}
+
+.post-title {
+    padding-left: 20px;
+    font-weight: 500;
+    font-size: 40px;
 }
