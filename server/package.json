@@ -4,8 +4,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "compile": "tsc",
+    "run": "cd build/ && node index.js",
+    "test": "npm run compile && npm run run"
   },
   "author": "6ixfalls, JavaNameConvention",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^16.11.4"
+  }
 }
