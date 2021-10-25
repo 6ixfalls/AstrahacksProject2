@@ -25,6 +25,7 @@
     user-select: none;
     padding-top: calc(3em + 20px);
     font-family: 'Roboto', sans-serif;
+    padding-bottom: 3em;
 }
 
 .post {
@@ -37,7 +38,7 @@
 }
 
 .post-author {
-    font-size: 25px;
+    font-size: 15px;
     font-weight: 100;
 }
 

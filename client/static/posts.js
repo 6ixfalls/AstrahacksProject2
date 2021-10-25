@@ -53,7 +53,7 @@ onAuthStateChanged(auth, async (user) => {
 
         // get posts
         const postRef = collection(db, "posts");
-        const q = query(postRef, orderBy("createdAt", "desc"), limit(10));
+        const q = query(postRef, orderBy("createdAt", "desc"), limit(50));
         const querySnapshots = await getDocs(q);
 
         querySnapshots.docs.forEach((doc) => {
@@ -87,7 +87,6 @@ onAuthStateChanged(auth, async (user) => {
 });
 
 $("textarea").first().on("input propertychange paste", () => {
-    console.log($("textarea").first().val());
     $(".output-preview").first().html(marked($("textarea").first().val(), { breaks: true }));
 });
 
@@ -118,6 +117,8 @@ $(".send-post").first().click(() => {
                 "font-family": "'Roboto', sans-serif",
             }
         }).showToast();
+
+        window.location.href = "/post/" + response.data.postId;
     }).catch((error) => {
         Toastify({
             text: "Post Error",
